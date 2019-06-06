@@ -1,0 +1,4 @@
+define Exp(A,X) ~[?* <> X] & A^65;
+define G Exp([a|b|c|d],[ <FORBIDDEN> ]);
+regex G;
+print random-words 100000

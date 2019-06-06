@@ -1,0 +1,4 @@
+define Exp(A,X) ~[?* <> X] & A^85;
+define G Exp([a|b|c|d],[ a b b a a b b a a b b a a b b a | b c c b b c c b b c c b b c c b ]);
+regex G;
+print random-words 100000

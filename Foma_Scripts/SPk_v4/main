@@ -1,0 +1,27 @@
+#!/bin/bash
+
+start=8
+end=100
+for ((i=$start; i<=$end; i++)); do
+	mkdir SP$start
+	mkdir /mnt/data/SP_data/SP$start
+	cp SP_Template SP$start/SP$start\_$i.foma
+	sed -i "s/<LEN>/$i/g" SP$start/SP$start\_$i.foma
+	if [ $start = 2 ]
+	then
+		sed -i "s/<FORBIDDEN>/a b | b c | c d | d c/g" SP$start/SP$start\_$i.foma
+	elif [ $start = 4 ]
+	then
+		sed -i "s/<FORBIDDEN>/a b b a | b c c b/g" SP$start/SP$start\_$i.foma
+	elif [ $start = 8 ]
+	then
+		sed -i "s/<FORBIDDEN>/a b b a a b b a | b c c b b c c b/g" SP$start/SP$start\_$i.foma		
+	elif [ $start = 16 ]
+	then
+		sed -i "s/<FORBIDDEN>/a b b a a b b a a b b a a b b a | b c c b b c c b b c c b b c c b/g" SP$start/SP$start\_$i.foma
+	fi
+
+	echo "Processing file: "SP$start/SP$start\_$i.foma
+	touch /mnt/data/SP_data/SP$start/SP$start\_$i.dat
+	foma -f SP$start/SP$start\_$i.foma > /mnt/data/SP_data/SP$start/SP$start\_$i.dat
+done
