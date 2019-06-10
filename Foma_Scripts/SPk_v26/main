@@ -8,7 +8,7 @@ k=2
 start=60
 end=100
 for ((i=$start; i<=$end; i++)); do
-	
+
 	mkdir SP$k
 
 	#mkdir /your/folder/SP_v26_Data/SP$k
